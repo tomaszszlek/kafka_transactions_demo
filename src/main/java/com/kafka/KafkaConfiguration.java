@@ -32,6 +32,7 @@ public class KafkaConfiguration {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setMessageConverter(new StringJsonMessageConverter());
+        factory.getContainerProperties().setTransactionManager(kafkaTransactionManager()); //this enable kafka transactions for listener
         return factory;
     }
 
